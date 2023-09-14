@@ -20,9 +20,9 @@ private: //objects
 	QDesktopWidget* desk;
 
 	QMenu* fileMenu;				// File
-	QMenu* newActGrp;		// |---New
-	QAction* new_folderAct;			// |   |---Folder
+	QMenu* newActGrp;				// |---New
 	QAction* new_accountAct;		// |   |---Account
+	QAction* new_folderAct;			// |   |---Folder
 	QAction* settingsAct;			// |---Settings
 	QAction* exitAct;				// |---Exit
 
@@ -32,7 +32,7 @@ private: //objects
 	QAction* shortcut_refdAct;		// |---Shortcut Reference
 	QAction* feedbackAct;			// |---Feedback
 	QAction* release_notesAct;		// |---Release Notes
-	QAction* open_srcAct;			// |---[open-source project]
+	QAction* open_srcAct;			// |---About Open-soucre
 };
 
 #endif

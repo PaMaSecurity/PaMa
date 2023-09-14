@@ -46,6 +46,7 @@ private: //methods
 
 private slots: //slots
 	void clear_error();
+	void password_forgot();
 	void check_password();
 };
 

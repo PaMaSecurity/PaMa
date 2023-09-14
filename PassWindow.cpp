@@ -107,10 +107,11 @@ PassWindow::PassWindow(QWidget* parent)
 
 
 	//	Back
-	QObject::connect(this->passwordEntry, &QLineEdit::returnPressed, this, &PassWindow::check_password);
-	QObject::connect(this->loginButton, &QPushButton::pressed, this, &PassWindow::check_password);
 	QObject::connect(this->emailEntry, &PLineEdit::focused, this, &PassWindow::clear_error);
+	QObject::connect(this->forgotButton, &QPushButton::pressed, this, &PassWindow::password_forgot);
+	QObject::connect(this->passwordEntry, &QLineEdit::returnPressed, this, &PassWindow::check_password);
 	QObject::connect(this->passwordEntry, &PLineEdit::focused, this, &PassWindow::clear_error);
+	QObject::connect(this->loginButton, &QPushButton::pressed, this, &PassWindow::check_password);
 }
 
 PassWindow::~PassWindow()
@@ -140,6 +141,11 @@ void PassWindow::clear_error()
 		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 		this->is_error_raised = false;
 	}
+}
+
+void PassWindow::password_forgot()
+{
+	qDebug() << "password forgot";
 }
 
 void PassWindow::check_password()
