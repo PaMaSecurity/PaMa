@@ -10,23 +10,12 @@ QString pcry::decrypt(QString file)
 	return "";
 }
 
-QString pcry::getWinSeed()
-{
-    return winseed;
-}
-
 QString pcry::getPrdKey()
 {
 	if (prdKey.isEmpty())
 	{
         LPCSTR path = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SoftwareProtectionPlatform";
-        /*
-        Administrator permissions aren't required
-            SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SoftwareProtectionPlatform     BackupProductKeyDefault
-
-        Administrator permissions are required
-            SOFTWARE\\Microsoft\\Cryptography\\RNG                                          Seed
-        */
+        
         LPCSTR key = "BackupProductKeyDefault";
 
         HKEY hKey;
