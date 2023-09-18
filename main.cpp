@@ -17,6 +17,10 @@ int main(int argc, char* argv[])
 	return app.exec();
 }
 
+/* Ideas:
+- Have a menu where all actions done that can be undone are listed
+*/
+
 /*
 Open a link: https://doc.qt.io/qt-5/qdesktopservices.html
 QSS (CSS for qt): https://youtu.be/zjWfDEUsobQ

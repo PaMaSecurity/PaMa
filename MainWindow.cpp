@@ -19,17 +19,16 @@ MainWindow::MainWindow(QWidget* parent)
 	this->cutAct = new QAction(this);				// |---Cut
 	this->copyAct = new QAction(this);				// |---Copy
 	this->pasteAct = new QAction(this);				// |---Paste
-	this->duplicateAct = new QAction(this);			// |---Duplicate
 	this->deleteAct = new QAction(this);			// |---Delete
 	this->selectallAct = new QAction(this);			// |---Select All
 	this->deselectallAct = new QAction(this);		// |---Deselect All
 	
 	this->viewMenu = new QMenu(this);				// View
 	this->fullscreenAct = new QAction(this);		// |---Full Screen
-	this->appearenceAct = new QAction(this);		// |---Appearence
 	this->zoominAct = new QAction(this);			// |---Zoom in
 	this->zoomoutAct = new QAction(this);			// |---Zoom out
 	this->reset_zoomAct = new QAction(this);		// |---Reset Zoom
+	this->appearenceAct = new QAction(this);		// |---Appearence (to settings)
 	this->reset_layoutAct = new QAction(this);		// |---Reset Window Layout
 
 	this->helpMenu = new QMenu(this);				// Help
@@ -51,6 +50,7 @@ MainWindow::MainWindow(QWidget* parent)
 	this->fileMenu = menuBar()->addMenu(tr("File")); 
 
 	this->newActGrp = this->fileMenu->addMenu(tr("New"));
+	this->newActGrp->setDisabled(true);//
 	
 	this->newActGrp->addAction(this->new_accountAct);
 	this->new_accountAct->setText(tr("Account"));
@@ -71,6 +71,88 @@ MainWindow::MainWindow(QWidget* parent)
 	this->exitAct->setText(tr("Exit"));
 	this->exitAct->setShortcut(QKeySequence("Ctrl+Q"));
 	this->exitAct->setDisabled(true);//
+	
+	//Edit
+	this->editMenu = menuBar()->addMenu(tr("Edit"));
+
+	this->editMenu->addAction(this->undoAct);
+	this->undoAct->setText(tr("Undo"));  // Enable only if we can undo something
+	this->undoAct->setShortcut(QKeySequence("Ctrl+Z"));
+	this->undoAct->setDisabled(true);//
+
+	this->editMenu->addAction(this->redoAct);
+	this->redoAct->setText(tr("Redo"));  // Enable only if we can redo something
+	this->redoAct->setShortcut(QKeySequence("Ctrl+Shift+Z"));  // Ctrl+Y
+	this->redoAct->setDisabled(true);//
+
+	this->editMenu->addSeparator();
+
+	this->editMenu->addAction(this->cutAct);
+	this->cutAct->setText(tr("Cut"));
+	this->cutAct->setShortcut(QKeySequence("Ctrl+X"));
+	this->cutAct->setDisabled(true);//
+
+	this->editMenu->addAction(this->copyAct);
+	this->copyAct->setText(tr("Copy"));
+	this->copyAct->setShortcut(QKeySequence("Ctrl+C"));
+	this->copyAct->setDisabled(true);//
+
+	this->editMenu->addAction(this->pasteAct);
+	this->pasteAct->setText(tr("Pase"));
+	this->pasteAct->setShortcut(QKeySequence("Ctrl+V"));
+	this->pasteAct->setDisabled(true);//
+
+	this->editMenu->addAction(this->deleteAct);
+	this->deleteAct->setText(tr("Delete"));
+	this->deleteAct->setShortcut(QKeySequence(Qt::Key_Delete));
+	this->deleteAct->setDisabled(true);//
+
+	this->editMenu->addSeparator();
+
+	this->editMenu->addAction(this->selectallAct);
+	this->selectallAct->setText(tr("Select All"));
+	this->selectallAct->setShortcut(QKeySequence("Ctrl+A"));
+	this->selectallAct->setDisabled(true);//
+
+	this->editMenu->addAction(this->deselectallAct);
+	this->deselectallAct->setText(tr("Deselect All"));
+	this->deselectallAct->setShortcut(QKeySequence("Ctrl+D"));
+	this->deselectallAct->setDisabled(true);//
+	
+	//View
+	this->viewMenu = menuBar()->addMenu(tr("View"));
+
+	this->viewMenu->addAction(this->fullscreenAct);  // Change its name to "Exit Full Screen"
+	this->fullscreenAct->setText(tr("Full Screen"));
+	this->fullscreenAct->setShortcut(QKeySequence(Qt::Key_F11));
+	this->fullscreenAct->setDisabled(true);//
+
+	this->viewMenu->addSeparator();
+
+	this->viewMenu->addAction(this->zoominAct);
+	this->zoominAct->setText(tr("Zoom in"));
+	this->zoominAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Plus));
+	this->zoominAct->setDisabled(true);//
+
+	this->viewMenu->addAction(this->zoomoutAct);
+	this->zoomoutAct->setText(tr("Zoom out"));
+	this->zoomoutAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Minus));
+	this->zoomoutAct->setDisabled(true);//
+
+	this->viewMenu->addAction(this->reset_zoomAct);
+	this->reset_zoomAct->setText(tr("Reset Zoom"));  // Enable only if the zoom changed
+	this->reset_zoomAct->setShortcut(QKeySequence("Ctrl+0"));
+	this->reset_zoomAct->setDisabled(true);//
+
+	this->viewMenu->addSeparator();
+
+	this->viewMenu->addAction(this->appearenceAct);
+	this->appearenceAct->setText(tr("Appearence"));  // Open the Settings Window on the Appearence tab.
+	this->appearenceAct->setDisabled(true);//
+
+	this->viewMenu->addAction(this->reset_layoutAct);
+	this->reset_layoutAct->setText(tr("Reset Layout"));  // Enable only if the layout chanched
+	this->reset_layoutAct->setDisabled(true);//
 
 	//help
 	this->helpMenu = menuBar()->addMenu(tr("Help"));
