@@ -13,6 +13,25 @@ MainWindow::MainWindow(QWidget* parent)
 	this->settingsAct = new QAction(this);			// |---Settings
 	this->exitAct = new QAction(this);				// |---Exit
 
+	this->editMenu = new QMenu(this);				// Edit
+	this->undoAct = new QAction(this);				// |---Undo
+	this->redoAct = new QAction(this);				// |---Redo
+	this->cutAct = new QAction(this);				// |---Cut
+	this->copyAct = new QAction(this);				// |---Copy
+	this->pasteAct = new QAction(this);				// |---Paste
+	this->duplicateAct = new QAction(this);			// |---Duplicate
+	this->deleteAct = new QAction(this);			// |---Delete
+	this->selectallAct = new QAction(this);			// |---Select All
+	this->deselectallAct = new QAction(this);		// |---Deselect All
+	
+	this->viewMenu = new QMenu(this);				// View
+	this->fullscreenAct = new QAction(this);		// |---Full Screen
+	this->appearenceAct = new QAction(this);		// |---Appearence
+	this->zoominAct = new QAction(this);			// |---Zoom in
+	this->zoomoutAct = new QAction(this);			// |---Zoom out
+	this->reset_zoomAct = new QAction(this);		// |---Reset Zoom
+	this->reset_layoutAct = new QAction(this);		// |---Reset Window Layout
+
 	this->helpMenu = new QMenu(this);				// Help
 	this->view_helpAct = new QAction(this);			// |---View Help
 	this->getting_startedAct = new QAction(this);	// |---Getting Started
