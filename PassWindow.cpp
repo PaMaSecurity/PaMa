@@ -26,7 +26,7 @@ PassWindow::PassWindow(QWidget* parent)
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("window_icon.ico"));
 	setWindowTitle("PaMa");
-	setStyleSheet("QMainWindow{background: #FDFDF7;} color: #0A0905;");
+	setStyleSheet("QMainWindow{background: #FCFCFA;} color: #0A0905;");
 	
 
 	//	Body

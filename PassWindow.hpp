@@ -39,7 +39,7 @@ private: //objects
 private: //variables
 	short remaining_tests = 3;
 	bool is_error_raised = false;
-	QString entryStyle = "background: #FDFDF7; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
+	QString entryStyle = "background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
 
 private: //methods
 	void raise_error(const QString message);

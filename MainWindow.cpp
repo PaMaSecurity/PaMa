@@ -7,9 +7,8 @@ MainWindow::MainWindow(QWidget* parent)
 	this->desk = QApplication::desktop();
 
 	this->fileMenu = new QMenu(this);				// File
-	this->newActGrp = new QMenu(this);				// |---New
-	this->new_accountAct = new QAction(this);		// |   |---Account
-	this->new_folderAct = new QAction(this);		// |   |---Folder
+	this->new_accountAct = new QAction(this);		// |---New Account
+	this->new_folderAct = new QAction(this);		// |---New Folder
 	this->settingsAct = new QAction(this);			// |---Settings
 	this->exitAct = new QAction(this);				// |---Exit
 
@@ -48,17 +47,14 @@ MainWindow::MainWindow(QWidget* parent)
 	//	Menu
 	//file
 	this->fileMenu = menuBar()->addMenu(tr("File")); 
-
-	this->newActGrp = this->fileMenu->addMenu(tr("New"));
-	this->newActGrp->setDisabled(true);//
 	
-	this->newActGrp->addAction(this->new_accountAct);
-	this->new_accountAct->setText(tr("Account"));
+	this->fileMenu->addAction(this->new_accountAct);
+	this->new_accountAct->setText(tr("New Account"));
 	this->new_accountAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));  // Qt::CTRL | Qt::Key_Plus
 	this->new_accountAct->setDisabled(true);//
 
-	this->newActGrp->addAction(this->new_folderAct);
-	this->new_folderAct->setText(tr("Folder"));
+	this->fileMenu->addAction(this->new_folderAct);
+	this->new_folderAct->setText(tr("New Folder"));
 	this->new_folderAct->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));  // Qt::CTRL | Qt::SHIFT | Qt::Key_Plus
 	this->new_folderAct->setDisabled(true);//
 	

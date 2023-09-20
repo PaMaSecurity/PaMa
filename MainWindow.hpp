@@ -20,9 +20,8 @@ private: //objects
 	QDesktopWidget* desk;
 
 	QMenu* fileMenu;				// File
-	QMenu* newActGrp;				// |---New
-	QAction* new_accountAct;		// |   |---Account
-	QAction* new_folderAct;			// |   |---Folder
+	QAction* new_accountAct;		// |---New Account
+	QAction* new_folderAct;			// |---New Folder
 	QAction* settingsAct;			// |---Settings
 	QAction* exitAct;				// |---Exit
 
@@ -51,6 +50,17 @@ private: //objects
 	QAction* feedbackAct;			// |---Feedback
 	QAction* release_notesAct;		// |---Release Notes
 	QAction* open_srcAct;			// |---About Open-soucre
+
+private slots:
+	void new_account();
+	void new_folder();
+	void settings();
+	void exit();
+	void undo();
+	void redo();
+	void cut();
+	void copy();
+	void paste();
 };
 
 #endif
