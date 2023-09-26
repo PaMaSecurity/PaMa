@@ -52,7 +52,7 @@ private: //objects
 	QAction* open_srcAct;			// |---About Open-soucre
 
 private slots:
-	void new_account();
+	/*void new_account();
 	void new_folder();
 	void settings();
 	void exit();
@@ -60,7 +60,7 @@ private slots:
 	void redo();
 	void cut();
 	void copy();
-	void paste();
+	void paste();*/
 };
 
 #endif

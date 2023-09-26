@@ -23,17 +23,21 @@ ProductKey
 	Administrator permissions aren't required
 */
 
-namespace pcry
-{
-
-	QString encrypt(QString file);
-
-	QString decrypt(QString file);
-
-	QString getPrdKey();
-	
-	//Windows ProductKey
-	static QString prdKey = "";
-};
+//class Pcry
+//{
+//public:
+//	Pcry() = default;
+//	Pcry(QString text);
+//	void setText();
+//	QString encrypt();
+//	QString decrypt();
+//	void operator=(QString text);
+//
+//private: // methods
+//	QString getPrdKey();
+//
+//private: // vars
+//	QString prdKey;
+//};
 
 #endif
