@@ -5,6 +5,7 @@
 #include <QApplication.h>
 #include <QDesktopWidget.h>
 #include <QMenuBar.h>
+#include <QDebug.h>
 	
 class MainWindow : public QMainWindow
 {
@@ -46,21 +47,38 @@ private: //objects
 	QMenu* helpMenu;				// Help
 	QAction* view_helpAct;			// |---View Help
 	QAction* getting_startedAct;	// |---Getting Started
-	QAction* shortcut_refdAct;		// |---Shortcut Reference
+	QAction* shortcut_refAct;		// |---Shortcut Reference
 	QAction* feedbackAct;			// |---Feedback
 	QAction* release_notesAct;		// |---Release Notes
 	QAction* open_srcAct;			// |---About Open-soucre
 
 private slots:
-	/*void new_account();
+	// File
+	void new_account();
 	void new_folder();
-	void settings();
+	void open_settings();
 	void exit();
+	// Edit
 	void undo();
 	void redo();
 	void cut();
 	void copy();
-	void paste();*/
+	void paste();
+	void suppr();
+	void selectall();
+	void deselectall();
+	// View
+	void zoom_in();
+	void zoom_out();
+	void reset_zoom();
+	void reset_layout();
+	// Help
+	void view_help();
+	void getting_started();
+	void shortcut_reference();
+	void feedback();
+	void release_notes();
+	void about_open_src();
 };
 
 #endif
