@@ -5,7 +5,7 @@
 PassWindow::PassWindow(QWidget* parent)
 	: QMainWindow(parent)
 {
-	//	Instantiate objects
+	//		Instantiate objects
 	this->vlayout = new QVBoxLayout(this);
 	this->entriesLayout = new QVBoxLayout(this);
 	this->mainWidget = new QWidget(this);
@@ -19,9 +19,13 @@ PassWindow::PassWindow(QWidget* parent)
 	this->passwordEntry = new PLineEdit(this);
 	this->loginButton = new QPushButton(this);
 	this->errorLabel = new QLabel(this);
+	this->settingsLayout = new QHBoxLayout(this);
+	this->languageCB = new QComboBox(this);
+	//this->themeBtn = new QPushButton(this);
+	//this->themeCB = new QComboBox(this);
 
 
-	//	Window
+	//		Window
 	resize(750, 600);
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("window_icon.ico"));
@@ -29,11 +33,13 @@ PassWindow::PassWindow(QWidget* parent)
 	setStyleSheet("QMainWindow{background: #FCFCFA;} color: #0A0905;");
 	
 
-	//	Body
-	// Title
+	//		Body
+	//	Title
 	this->titleLabel->setText(tr("Sign in to PaMa"));
 	this->vlayout->addWidget(this->titleLabel);
-	// Entries
+	this->vlayout->addSpacing(30);
+
+	//	Entries
 	//email
 	this->emailLabel->setText(tr("Email adress"));
 	this->entriesLayout->addWidget(this->emailLabel);
@@ -54,22 +60,27 @@ PassWindow::PassWindow(QWidget* parent)
 	//login
 	this->loginButton->setText(tr("&Sign in"));
 	this->entriesLayout->addWidget(this->loginButton);
-
+	//layout
 	this->entriesBox->setLayout(this->entriesLayout);
 	this->vlayout->addWidget(this->entriesBox);
 
-	//	Set Central Widget
+	//	Settings
+	this->settingsLayout->addWidget(this->languageCB);
+	this->vlayout->addLayout(this->settingsLayout);
+
+
+	//		Set Central Widget
 	this->mainWidget->setLayout(this->vlayout);
 	setCentralWidget(mainWidget);
 
 
-	//	Style
+	//		Style
 	//title
 	this->titleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 	this->titleLabel->setFont(NS40_N().get());
 	//vlayout
 	this->vlayout->setAlignment(Qt::AlignmentFlag::AlignCenter);
-	this->vlayout->setSpacing(40);
+	this->vlayout->setSpacing(10);
 	//entriesBox
 	this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
 	this->entriesBox->setFixedWidth(350);
@@ -106,7 +117,7 @@ PassWindow::PassWindow(QWidget* parent)
 	this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 
 
-	//	Back
+	//		Back
 	QObject::connect(this->emailEntry, &PLineEdit::focused, this, &PassWindow::clear_error);
 	QObject::connect(this->forgotButton, &QPushButton::pressed, this, &PassWindow::password_forgot);
 	QObject::connect(this->passwordEntry, &QLineEdit::returnPressed, this, &PassWindow::check_password);

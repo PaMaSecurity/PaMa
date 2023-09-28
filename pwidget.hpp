@@ -2,6 +2,7 @@
 #define PLINEEDIT_H
 
 #include <QLineEdit.h>
+#include <QComboBox.h>
 
 class PLineEdit : public QLineEdit
 {

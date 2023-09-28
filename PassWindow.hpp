@@ -6,10 +6,12 @@
 #include <QBoxLayout.h>
 #include <QPushButton.h>
 #include <QLabel.h>
+#include <QCombobox.h>
 #include "crypto.hpp"
 #include "utils.hpp"
-#include <QDebug.h>
 #include "pwidget.hpp"
+
+#include <QDebug.h>
 
 class PassWindow : public QMainWindow
 {
@@ -35,6 +37,10 @@ private: //objects
 	PLineEdit* passwordEntry;
 	QPushButton* loginButton;
 	QLabel* errorLabel;
+	QHBoxLayout* settingsLayout;
+	QComboBox* languageCB;
+	//QPushButton* themeBtn;
+	//QComboBox* themeCB;
 
 private: //variables
 	short remaining_tests = 3;
