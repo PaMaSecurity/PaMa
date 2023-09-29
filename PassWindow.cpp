@@ -30,7 +30,6 @@ PassWindow::PassWindow(QWidget* parent)
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("window_icon.ico"));
 	setWindowTitle("PaMa");
-	setStyleSheet("QMainWindow{background: #FCFCFA;} color: #0A0905;");
 	
 
 	//		Body
@@ -66,6 +65,9 @@ PassWindow::PassWindow(QWidget* parent)
 
 	//	Settings
 	this->settingsLayout->addWidget(this->languageCB);
+	this->languageCB->addItem("Français");
+	this->languageCB->addItem("English");
+	this->languageCB->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
 	this->vlayout->addLayout(this->settingsLayout);
 
 
@@ -75,6 +77,8 @@ PassWindow::PassWindow(QWidget* parent)
 
 
 	//		Style
+	//window
+	setStyleSheet("QMainWindow{background-color: #FCFCFA;} color: #0A0905;");
 	//title
 	this->titleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 	this->titleLabel->setFont(NS40_N().get());
@@ -115,6 +119,10 @@ PassWindow::PassWindow(QWidget* parent)
 	//error
 	this->errorLabel->setFont(NS15_N().get());
 	this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+	//settings
+	this->languageCB->setFixedSize(QSize(130, 18));
+	//this->languageCB->
+	this->languageCB->setStyleSheet("QComboBox{ border: 0px; background-color: #FCFCFA; text-align: right; }");
 
 
 	//		Back
