@@ -44,9 +44,11 @@ private: //objects
 	//QComboBox* themeCB;
 
 private: //variables
+	QList<QString> LanguagesList = { "English", "Français" };  // map or hashmap | qmap ...
+	QString lang = "Français";
 	short remaining_tests = 3;
 	bool is_error_raised = false;
-	QString entryStyle = "background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
+	QString entryStyle = "selection-background-color: #486ED9; background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
 
 private: //methods
 	void clear_focus();
@@ -57,6 +59,7 @@ private slots: //slots
 	void clear_error();
 	void password_forgot();
 	void check_password();
+	void language_changed();
 };
 
 #endif

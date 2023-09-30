@@ -18,11 +18,11 @@ private:
 	void focusInEvent(QFocusEvent* e);
 };
 
-#include <QDialog.h>
-class Settings : public QDialog  //open() ->https://doc.qt.io/qt-5/qdialog.html#exec
-{
-public:
-	Settings(QWidget* parent = nullptr);
-	~Settings();
-};
+//#include <QDialog.h>
+//class Settings : public QDialog  //open() ->https://doc.qt.io/qt-5/qdialog.html#exec
+//{
+//public:
+//	Settings(QWidget* parent = nullptr);
+//	~Settings();
+//};
 #endif
