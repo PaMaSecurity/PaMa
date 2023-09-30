@@ -3,6 +3,15 @@
 
 #include <QFont.h>
 
+class NS12_N : public QFont  //normal 12px
+{
+public:
+	NS12_N();
+	QFont get() { return font; };
+private:
+	QFont font;
+};
+
 class NS15_N : public QFont  //normal 15px
 {
 public:

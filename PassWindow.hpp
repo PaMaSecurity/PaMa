@@ -7,6 +7,7 @@
 #include <QPushButton.h>
 #include <QLabel.h>
 #include <QCombobox.h>
+#include <QListView.h>
 #include "crypto.hpp"
 #include "utils.hpp"
 #include "pwidget.hpp"
@@ -48,9 +49,11 @@ private: //variables
 	QString entryStyle = "background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
 
 private: //methods
+	void clear_focus();
 	void raise_error(const QString message);
 
 private slots: //slots
+	void mousePressEvent(QMouseEvent* e);
 	void clear_error();
 	void password_forgot();
 	void check_password();

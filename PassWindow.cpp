@@ -67,7 +67,6 @@ PassWindow::PassWindow(QWidget* parent)
 	this->settingsLayout->addWidget(this->languageCB);
 	this->languageCB->addItem("Français");
 	this->languageCB->addItem("English");
-	this->languageCB->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
 	this->vlayout->addLayout(this->settingsLayout);
 
 
@@ -94,6 +93,7 @@ PassWindow::PassWindow(QWidget* parent)
 	//email
 	this->emailLabel->setFixedSize(QSize(300, 20));
 	this->emailLabel->setFont(NS18_N().get());
+	this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 	this->emailEntry->setFixedSize(QSize(300, 50));
 	this->emailEntry->setFont(NS15_N().get());
 	this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
@@ -102,6 +102,7 @@ PassWindow::PassWindow(QWidget* parent)
 	//password
 	this->passwordLabel->setFixedSize(QSize(160, 20));
 	this->passwordLabel->setFont(NS18_N().get());
+	this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 	this->forgotButton->setCursor(Qt::CursorShape::PointingHandCursor);
 	this->forgotButton->setFixedSize(QSize(140, 30));
 	this->forgotButton->setFont(NS15_N().get());
@@ -115,14 +116,18 @@ PassWindow::PassWindow(QWidget* parent)
 	this->loginButton->setFixedSize(QSize(300, 36));
 	this->loginButton->setFont(NS20_N().get());
 	this->loginButton->setCursor(Qt::CursorShape::PointingHandCursor);
-	this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton:hover{background: #4862A8;}");
+	this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
 	//error
 	this->errorLabel->setFont(NS15_N().get());
 	this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 	//settings
-	this->languageCB->setFixedSize(QSize(130, 18));
-	//this->languageCB->
-	this->languageCB->setStyleSheet("QComboBox{ border: 0px; background-color: #FCFCFA; text-align: right; }");
+	this->languageCB->setFixedSize(QSize(130, 25));
+	this->languageCB->setFont(NS12_N().get());
+	this->languageCB->setCursor(Qt::CursorShape::PointingHandCursor);
+	this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: transparent; text-align: right; } QComboBox::down-arrow { background-color: transparent; image: url(down_arrow.svg); border: 0px; } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ border: 1px dotted grey; } QComboBox)");
+	QListView* listView = new QListView(this->languageCB);
+	listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #00FF00; } QListView::item:selected{ background-color: #00FF00; }");
+	this->languageCB->setView(listView);
 
 
 	//		Back
@@ -139,24 +144,40 @@ PassWindow::~PassWindow()
 
 //private methods
 
+void PassWindow::clear_focus()
+{
+	this->emailEntry->clearFocus();
+	this->passwordEntry->clearFocus();
+	this->loginButton->clearFocus();
+	this->languageCB->clearFocus();
+}
+
 void PassWindow::raise_error(const QString message)
 {
 	this->errorLabel->setText(message);
+	this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 	this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
+	this->passwordLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 	this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
-	this->emailEntry->clearFocus();
-	this->passwordEntry->clearFocus();
+	this->clear_focus();
 	this->is_error_raised = true;
 }
 
 //private slots
 
+void PassWindow::mousePressEvent(QMouseEvent* e)
+{
+	this->clear_focus();
+	this->clear_error();
+}
+
 void PassWindow::clear_error()
 {
 	if (this->is_error_raised)
 	{
-		this->errorLabel->clear();
+		this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 		this->is_error_raised = false;
 	}
