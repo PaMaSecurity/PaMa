@@ -1,0 +1,19 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" data-name="S_Sun_18_N@2x" height="36" id="S_Sun_18_N_2x" viewBox="0 0 36 36" width="36">
+  <defs>
+    <style>
+      .fill {
+        fill: #0A0905;
+      }
+    </style>
+  </defs>
+  <circle class="fill" cx="18" cy="18" r="7.9" />
+  <rect class="fill" height="6" rx="0.5" transform="translate(-0.652 5.007) rotate(-22.5)" width="3.6" x="10.46" y="1.142" />
+  <rect class="fill" height="6" rx="0.5" transform="matrix(0.924, -0.383, 0.383, 0.924, -10.384, 11.51)" width="3.6" x="21.94" y="28.858" />
+  <rect class="fill" height="3.6" rx="0.5" transform="translate(-8.77 3.392) rotate(-22.5)" width="6" x="1.142" y="21.94" />
+  <rect class="fill" height="3.6" rx="0.5" transform="translate(-2.267 13.125) rotate(-22.5)" width="6" x="28.858" y="10.46" />
+  <rect class="fill" height="3.6" rx="0.5" transform="translate(11.441 24.4) rotate(-67.5)" width="6" x="20.979" y="1.838" />
+  <rect class="fill" height="3.6" rx="0.5" transform="translate(-22.465 31.145) rotate(-67.5)" width="6" x="9.073" y="30.583" />
+  <rect class="fill" height="6" rx="0.5" transform="translate(-8.891 10.788) rotate(-67.5)" width="3.6" x="1.827" y="9.047" />
+  <rect class="fill" height="6" rx="0.5" transform="translate(-2.152 44.664) rotate(-67.5)" width="3.6" x="30.546" y="20.942" />
+</svg>

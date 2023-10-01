@@ -20,9 +20,9 @@ PassWindow::PassWindow(QWidget* parent)
 	this->loginButton = new QPushButton(this);
 	this->errorLabel = new QLabel(this);
 	this->settingsLayout = new QHBoxLayout(this);
+	this->settingsFrame = new QFrame(this);
 	this->languageCB = new PComboBox(this);
-	//this->themeBtn = new QPushButton(this);
-	//this->themeCB = new QComboBox(this);
+	this->themeBtn = new QPushButton(this);
 
 
 	//		Window
@@ -36,7 +36,7 @@ PassWindow::PassWindow(QWidget* parent)
 	//	Title
 	this->titleLabel->setText(tr("Sign in to PaMa"));
 	this->vlayout->addWidget(this->titleLabel);
-	this->vlayout->addSpacing(30);
+	this->vlayout->addSpacing(40);
 
 	//	Entries
 	//email
@@ -62,15 +62,22 @@ PassWindow::PassWindow(QWidget* parent)
 	//layout
 	this->entriesBox->setLayout(this->entriesLayout);
 	this->vlayout->addWidget(this->entriesBox);
+	this->vlayout->addSpacing(5);
 
 	//	Settings
-	this->settingsLayout->addWidget(this->languageCB);
+	//language
 	for (int i = 0; i < LanguagesList.size(); ++i)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
 	}
 	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->lang));
-	this->vlayout->addLayout(this->settingsLayout);
+	this->settingsLayout->addWidget(this->languageCB, 1, Qt::AlignmentFlag::AlignLeft);
+	//theme
+	this->themeBtn->setIcon(QIcon("dark.svg"));
+	this->settingsLayout->addWidget(this->themeBtn, 3, Qt::AlignmentFlag::AlignRight);
+	//layout
+	this->settingsFrame->setLayout(this->settingsLayout);
+	this->vlayout->addWidget(this->settingsFrame);
 
 
 	//		Set Central Widget
@@ -86,7 +93,7 @@ PassWindow::PassWindow(QWidget* parent)
 	this->titleLabel->setFont(NS40_N().get());
 	//vlayout
 	this->vlayout->setAlignment(Qt::AlignmentFlag::AlignCenter);
-	this->vlayout->setSpacing(10);
+	this->vlayout->setSpacing(0);
 	//entriesBox
 	this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
 	this->entriesBox->setFixedWidth(350);
@@ -123,14 +130,21 @@ PassWindow::PassWindow(QWidget* parent)
 	//error
 	this->errorLabel->setFont(NS15_N().get());
 	this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
-	//settings
-	this->languageCB->setFixedSize(QSize(130, 25));
+	//settingsFrame
+	this->settingsFrame->setFixedWidth(350);
+	//language
+	this->languageCB->setFixedSize(QSize(100, 25));
 	this->languageCB->setFont(NS12_N().get());
 	this->languageCB->setCursor(Qt::CursorShape::PointingHandCursor);
 	this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
 	QListView* listView = new QListView(this->languageCB);
 	listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 	this->languageCB->setView(listView);
+	//theme
+	this->themeBtn->setFixedSize(QSize(25, 25));
+	this->themeBtn->setIconSize(QSize(25, 25));
+	this->themeBtn->setCursor(Qt::CursorShape::PointingHandCursor);
+	this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
 
 
 	//		Back
@@ -140,6 +154,7 @@ PassWindow::PassWindow(QWidget* parent)
 	QObject::connect(this->passwordEntry, &PLineEdit::focused, this, &PassWindow::clear_error);
 	QObject::connect(this->loginButton, &QPushButton::pressed, this, &PassWindow::check_password);
 	QObject::connect(this->languageCB, &PComboBox::menuClicked, this, &PassWindow::language_changed);
+	QObject::connect(this->themeBtn, &QPushButton::pressed, this, &PassWindow::change_theme);
 }
 
 PassWindow::~PassWindow()
@@ -219,11 +234,25 @@ void PassWindow::check_password()
 	this->loginButton->setEnabled(true);
 }
 
-void PassWindow::language_changed()
+void PassWindow::language_changed(const QModelIndex& i) // too early to use the current text
 {
 	this->languageCB->clearFocus();
-	if (this->lang != this->languageCB->currentText())
+	if (this->languageCB->itemText(i.row()) != this->lang)
 	{
-		qDebug() << this->languageCB->currentText();
+		qDebug() << this->languageCB->itemText(i.row());
+	}
+}
+
+void PassWindow::change_theme()
+{
+	if (this->theme == "dark")
+	{
+		this->theme = "bright";
+		this->themeBtn->setIcon(QIcon("dark.svg"));
+	}
+	else
+	{
+		this->theme = "dark";
+		this->themeBtn->setIcon(QIcon("bright.svg"));
 	}
 }

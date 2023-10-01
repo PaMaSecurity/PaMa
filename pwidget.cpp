@@ -20,20 +20,21 @@ PComboBox::PComboBox(QWidget* parent) : QComboBox(parent), arrowAlignment_(Qt::A
 	setAutoFillBackground(true);
 	QPalette plt(palette());
 	plt.setColor(QPalette::Background, Qt::white);
+	setTextAlignment(Qt::AlignmentFlag::AlignLeft);
 	setPalette(plt);
 	QObject::connect(view(), &QAbstractItemView::pressed, this, &PComboBox::menu_pressed);
 	actual_itemView = view();
 }
 
-void PComboBox::menu_pressed()
+void PComboBox::menu_pressed(const QModelIndex &i)
 {
-	emit menuClicked();
+	emit menuClicked(i);
 }
 
 void PComboBox::setView(QAbstractItemView* itemView)
 {
 	QObject::disconnect(actual_itemView);
-	QObject::connect(itemView, &QAbstractItemView::pressed, this, [=] { emit menuClicked(); });
+	QObject::connect(itemView, &QAbstractItemView::pressed, this, &PComboBox::menu_pressed);
 	QComboBox::setView(itemView);
 }
 
@@ -46,7 +47,7 @@ void PComboBox::paintEvent(QPaintEvent* e)
 		initStyleOption(&opt);
 		QString displayText(opt.currentText);
 		opt.currentText = "";
-		painter.drawItemText(rect(), Qt::AlignCenter, palette(), true, displayText);
+		painter.drawItemText(rect(), textAlignment_, palette(), true, displayText);
 		const QRect rcOld(opt.rect);
 		opt.rect = QStyle::alignedRect(Qt::LeftToRight, arrowAlignment(), QSize(16, rcOld.height()), rcOld);
 		painter.drawPrimitive(QStyle::PE_IndicatorArrowDown, opt);
@@ -65,6 +66,10 @@ void PComboBox::setFlat(bool flat)
 void PComboBox::setArrowAlignment(Qt::Alignment a)
 {
 	arrowAlignment_ = a;
+}
+void PComboBox::setTextAlignment(Qt::Alignment a)
+{
+	textAlignment_ = a;
 }
 
 //Settings::Settings(QWidget* parent) : QDialog(parent)

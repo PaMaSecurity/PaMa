@@ -39,13 +39,14 @@ private: //objects
 	QPushButton* loginButton;
 	QLabel* errorLabel;
 	QHBoxLayout* settingsLayout;
+	QFrame* settingsFrame;
 	PComboBox* languageCB;
-	//QPushButton* themeBtn;
-	//QComboBox* themeCB;
+	QPushButton* themeBtn;
 
 private: //variables
 	QList<QString> LanguagesList = { "English", "Français" };  // map or hashmap | qmap ...
 	QString lang = "Français";
+	QString theme = "bright";
 	short remaining_tests = 3;
 	bool is_error_raised = false;
 	QString entryStyle = "selection-background-color: #486ED9; background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
@@ -59,7 +60,8 @@ private slots: //slots
 	void clear_error();
 	void password_forgot();
 	void check_password();
-	void language_changed();
+	void language_changed(const QModelIndex& i);
+	void change_theme();
 };
 
 #endif

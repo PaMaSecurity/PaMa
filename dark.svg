@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="S_Moon_18_N@2x" height="36" id="S_Moon_18_N_2x" viewBox="0 0 36 36" width="36">
+  <defs>
+    <style>
+      .fill {
+        fill: #0A0905;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="fill" d="M11.354,3.445a16,16,0,1,0,21.2,7.909A16,16,0,0,0,11.354,3.445ZM24.71,30.287c-.291.158-.589.309-.895.448a14,14,0,0,1-11.63-25.47q.459-.21.925-.383A22,22,0,0,0,24.71,30.287Z" />
+</svg>

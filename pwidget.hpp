@@ -34,6 +34,7 @@ public:
 
 	Qt::Alignment arrowAlignment() const { return arrowAlignment_; }
 	void setArrowAlignment(Qt::Alignment a);
+	void setTextAlignment(Qt::Alignment a);
 
 	void setView(QAbstractItemView* itemView);
 
@@ -41,14 +42,15 @@ protected:
 	virtual void paintEvent(QPaintEvent* e);
 
 signals:
-	void menuClicked();
+	void menuClicked(const QModelIndex& i);
 
 private:
 	bool connected;
 	bool flat_;
 	Qt::Alignment arrowAlignment_;
+	Qt::Alignment textAlignment_;
 	QAbstractItemView* actual_itemView;
-	void menu_pressed();
+	void menu_pressed(const QModelIndex& i);
 };
 
 //#include <QDialog.h>
