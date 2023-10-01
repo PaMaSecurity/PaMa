@@ -222,7 +222,6 @@ void PassWindow::check_password()
 void PassWindow::language_changed()
 {
 	this->languageCB->clearFocus();
-	qDebug() << "here";
 	if (this->lang != this->languageCB->currentText())
 	{
 		qDebug() << this->languageCB->currentText();

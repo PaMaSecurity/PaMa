@@ -47,7 +47,7 @@ private:
 	bool connected;
 	bool flat_;
 	Qt::Alignment arrowAlignment_;
-	QAbstractItemView* itemView;
+	QAbstractItemView* actual_itemView;
 	void menu_pressed();
 };
 

@@ -22,7 +22,7 @@ PComboBox::PComboBox(QWidget* parent) : QComboBox(parent), arrowAlignment_(Qt::A
 	plt.setColor(QPalette::Background, Qt::white);
 	setPalette(plt);
 	QObject::connect(view(), &QAbstractItemView::pressed, this, &PComboBox::menu_pressed);
-	connected = true;
+	actual_itemView = view();
 }
 
 void PComboBox::menu_pressed()
@@ -32,10 +32,7 @@ void PComboBox::menu_pressed()
 
 void PComboBox::setView(QAbstractItemView* itemView)
 {
-	if (connected)
-	{
-		QObject::disconnect();
-	}
+	QObject::disconnect(actual_itemView);
 	QObject::connect(itemView, &QAbstractItemView::pressed, this, [=] { emit menuClicked(); });
 	QComboBox::setView(itemView);
 }
