@@ -52,6 +52,8 @@ private: //objects
 	QAction* release_notesAct;		// |---Release Notes
 	QAction* open_srcAct;			// |---About Open-soucre
 
+private:  //vars
+
 private slots:
 	// File
 	void new_account();
@@ -68,6 +70,7 @@ private slots:
 	void selectall();
 	void deselectall();
 	// View
+	void full_screen();
 	void zoom_in();
 	void zoom_out();
 	void reset_zoom();

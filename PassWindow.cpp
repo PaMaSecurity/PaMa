@@ -26,7 +26,7 @@ PassWindow::PassWindow(QWidget* parent)
 
 
 	//		Window
-	resize(750, 600);
+	resize(700, 650);
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("window_icon.ico"));
 	setWindowTitle("PaMa");

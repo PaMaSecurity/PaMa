@@ -1,9 +1,11 @@
 #include "MainWindow.hpp"
 
+//		ctor & dtor
+
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 {
-	//	Instantiate objects
+	//		Instantiate objects
 	this->desk = QApplication::desktop();
 
 	this->fileMenu = new QMenu(this);				// File
@@ -39,13 +41,14 @@ MainWindow::MainWindow(QWidget* parent)
 	this->open_srcAct = new QAction(this);			// |---About Open-soucre
 
 
-	//	Window
+	//		Window
 	resize(this->desk->screenGeometry().size()*.75);
 	setWindowIcon(QIcon("window_icon.ico"));
+	setAnimated(false);
 
 
-	//	Menu
-	//file
+	//		Menu
+	//	file
 	this->fileMenu = menuBar()->addMenu(tr("File")); 
 	
 	this->fileMenu->addAction(this->new_accountAct);
@@ -68,7 +71,7 @@ MainWindow::MainWindow(QWidget* parent)
 	this->exitAct->setShortcut(QKeySequence("Ctrl+Q"));
 	QObject::connect(this->exitAct, &QAction::triggered, this, &MainWindow::exit);
 	
-	//Edit
+	//	Edit
 	this->editMenu = menuBar()->addMenu(tr("Edit"));
 
 	this->editMenu->addAction(this->undoAct);
@@ -115,13 +118,13 @@ MainWindow::MainWindow(QWidget* parent)
 	this->deselectallAct->setShortcut(QKeySequence("Ctrl+D"));
 	QObject::connect(this->deselectallAct, &QAction::triggered, this, &MainWindow::deselectall);
 	
-	//View
+	//	View
 	this->viewMenu = menuBar()->addMenu(tr("View"));
 
 	this->viewMenu->addAction(this->fullscreenAct);  // Change its name to "Exit Full Screen"
 	this->fullscreenAct->setText(tr("Full Screen"));
 	this->fullscreenAct->setShortcut(QKeySequence(Qt::Key_F11));
-	QObject::connect(this->fullscreenAct, &QAction::triggered, this, &MainWindow::showFullScreen);
+	QObject::connect(this->fullscreenAct, &QAction::triggered, this, &MainWindow::full_screen);
 
 	this->viewMenu->addSeparator();
 
@@ -150,7 +153,7 @@ MainWindow::MainWindow(QWidget* parent)
 	this->reset_layoutAct->setText(tr("Reset Layout"));  // Enable only if the layout chanched
 	QObject::connect(this->reset_layoutAct, &QAction::triggered, this, &MainWindow::reset_layout);
 
-	//help
+	//	help
 	this->helpMenu = menuBar()->addMenu(tr("Help"));
 
 	this->helpMenu->addAction(this->view_helpAct);
@@ -184,14 +187,16 @@ MainWindow::~MainWindow()
 {
 }
 
-// public slots
+//		public slots
 
 void MainWindow::display(QString p)
 {
 	this->showMaximized();
 }
 
-// private slots
+//		private slots
+
+//	file
 void MainWindow::new_account()
 {
 	qDebug() << "new account";
@@ -212,6 +217,7 @@ void MainWindow::exit()
 	qDebug() << "exit";
 }
 
+//	Edit
 void MainWindow::undo()
 {
 	qDebug() << "undo";
@@ -252,6 +258,21 @@ void MainWindow::deselectall()
 	qDebug() << "deselect all";
 }
 
+//	View
+void MainWindow::full_screen()
+{
+	if (isFullScreen())
+	{
+		showMaximized();
+		this->fullscreenAct->setText(tr("Full Screen"));
+	}
+	else
+	{
+		this->fullscreenAct->setText(tr("Exit Screen"));
+		showFullScreen();
+	}
+	qDebug() << "full screen";
+}
 
 void MainWindow::zoom_in()
 {
@@ -273,6 +294,7 @@ void MainWindow::reset_layout()
 	qDebug() << "reset_layout";
 }
 
+//	Help
 void MainWindow::view_help()
 {
 	qDebug() << "view help";
