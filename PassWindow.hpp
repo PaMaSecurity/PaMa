@@ -39,7 +39,7 @@ private: //objects
 	QPushButton* loginButton;
 	QLabel* errorLabel;
 	QHBoxLayout* settingsLayout;
-	QComboBox* languageCB;
+	PComboBox* languageCB;
 	//QPushButton* themeBtn;
 	//QComboBox* themeCB;
 

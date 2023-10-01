@@ -20,7 +20,7 @@ PassWindow::PassWindow(QWidget* parent)
 	this->loginButton = new QPushButton(this);
 	this->errorLabel = new QLabel(this);
 	this->settingsLayout = new QHBoxLayout(this);
-	this->languageCB = new QComboBox(this);
+	this->languageCB = new PComboBox(this);
 	//this->themeBtn = new QPushButton(this);
 	//this->themeCB = new QComboBox(this);
 
@@ -68,7 +68,6 @@ PassWindow::PassWindow(QWidget* parent)
 	for (int i = 0; i < LanguagesList.size(); ++i)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
-		qDebug() << LanguagesList[i];
 	}
 	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->lang));
 	this->vlayout->addLayout(this->settingsLayout);
@@ -128,7 +127,7 @@ PassWindow::PassWindow(QWidget* parent)
 	this->languageCB->setFixedSize(QSize(130, 25));
 	this->languageCB->setFont(NS12_N().get());
 	this->languageCB->setCursor(Qt::CursorShape::PointingHandCursor);
-	this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: transparent; text-align: right; } QComboBox::down-arrow { background-color: transparent; image: url(down_arrow.svg); border: 0px; } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ border: 1px dotted black; } QComboBox)");
+	this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
 	QListView* listView = new QListView(this->languageCB);
 	listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 	this->languageCB->setView(listView);
@@ -140,7 +139,7 @@ PassWindow::PassWindow(QWidget* parent)
 	QObject::connect(this->passwordEntry, &QLineEdit::returnPressed, this, &PassWindow::check_password);
 	QObject::connect(this->passwordEntry, &PLineEdit::focused, this, &PassWindow::clear_error);
 	QObject::connect(this->loginButton, &QPushButton::pressed, this, &PassWindow::check_password);
-	QObject::connect(this->languageCB, &QComboBox::currentTextChanged, this, &PassWindow::language_changed); // change it
+	QObject::connect(this->languageCB, &PComboBox::menuClicked, this, &PassWindow::language_changed);
 }
 
 PassWindow::~PassWindow()
@@ -203,7 +202,6 @@ void PassWindow::check_password()
 	//check
 	if (email == "elie" && password == "elie")
 	{
-		qDebug() << true;
 		emit password_validated(password);
 		close();
 	}
@@ -224,6 +222,7 @@ void PassWindow::check_password()
 void PassWindow::language_changed()
 {
 	this->languageCB->clearFocus();
+	qDebug() << "here";
 	if (this->lang != this->languageCB->currentText())
 	{
 		qDebug() << this->languageCB->currentText();

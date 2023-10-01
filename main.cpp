@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
 
 /* Ideas:
 - Have a menu where all actions done that can be undone are listed
+- App on phone that can unlock the software (need to be oversecured)
 */
 
 /*
