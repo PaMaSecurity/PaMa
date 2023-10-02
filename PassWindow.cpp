@@ -22,6 +22,7 @@ PassWindow::PassWindow(QWidget* parent)
 	this->settingsLayout = new QHBoxLayout(this);
 	this->settingsFrame = new QFrame(this);
 	this->languageCB = new PComboBox(this);
+	this->listView = new QListView(this->languageCB);
 	this->themeBtn = new QPushButton(this);
 
 
@@ -66,6 +67,7 @@ PassWindow::PassWindow(QWidget* parent)
 
 	//	Settings
 	//language
+	this->languageCB->setView(listView);
 	for (int i = 0; i < LanguagesList.size(); ++i)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
@@ -86,8 +88,6 @@ PassWindow::PassWindow(QWidget* parent)
 
 
 	//		Style
-	//window
-	setStyleSheet("QMainWindow{ background-color: #FCFCFA; color: #0A0905; }");
 	//title
 	this->titleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 	this->titleLabel->setFont(NS40_N().get());
@@ -95,7 +95,6 @@ PassWindow::PassWindow(QWidget* parent)
 	this->vlayout->setAlignment(Qt::AlignmentFlag::AlignCenter);
 	this->vlayout->setSpacing(0);
 	//entriesBox
-	this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
 	this->entriesBox->setFixedWidth(350);
 	//entriesLayout
 	this->entriesLayout->setSpacing(0);
@@ -103,48 +102,38 @@ PassWindow::PassWindow(QWidget* parent)
 	//email
 	this->emailLabel->setFixedSize(QSize(300, 20));
 	this->emailLabel->setFont(NS18_N().get());
-	this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 	this->emailEntry->setFixedSize(QSize(300, 50));
 	this->emailEntry->setFont(NS15_N().get());
-	this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 	//passwordLayout
 	this->passwordLayout->setSpacing(0);
 	//password
 	this->passwordLabel->setFixedSize(QSize(160, 20));
 	this->passwordLabel->setFont(NS18_N().get());
-	this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 	this->forgotButton->setCursor(Qt::CursorShape::PointingHandCursor);
 	this->forgotButton->setFixedSize(QSize(140, 30));
 	this->forgotButton->setFont(NS15_N().get());
 	this->forgotButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-	this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #486ED9; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
 	this->passwordEntry->setFixedSize(QSize(300, 50));
 	this->passwordEntry->setFont(NS15_N().get());
 	this->passwordEntry->setEchoMode(QLineEdit::EchoMode::Password);
-	this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 	//login
 	this->loginButton->setFixedSize(QSize(300, 36));
 	this->loginButton->setFont(NS20_N().get());
 	this->loginButton->setCursor(Qt::CursorShape::PointingHandCursor);
-	this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
 	//error
 	this->errorLabel->setFont(NS15_N().get());
-	this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 	//settingsFrame
 	this->settingsFrame->setFixedWidth(350);
 	//language
 	this->languageCB->setFixedSize(QSize(100, 25));
 	this->languageCB->setFont(NS12_N().get());
 	this->languageCB->setCursor(Qt::CursorShape::PointingHandCursor);
-	this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
-	QListView* listView = new QListView(this->languageCB);
-	listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
-	this->languageCB->setView(listView);
 	//theme
 	this->themeBtn->setFixedSize(QSize(25, 25));
 	this->themeBtn->setIconSize(QSize(25, 25));
 	this->themeBtn->setCursor(Qt::CursorShape::PointingHandCursor);
-	this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
+
+	this->apply_style();
 
 
 	//		Back
@@ -186,11 +175,55 @@ void PassWindow::apply_style()
 {
 	if (this->theme == "bright")
 	{
-		// ?
+		this->entryStyle = this->entryStyle_base.arg(this->white, this->black);
+		//window
+		setStyleSheet("QMainWindow{ background-color: #FCFCFA; color: #0A0905; }");
+		//title
+		this->titleLabel->setStyleSheet("QLabel{ color: #0A0905; }");
+		//entriesBox
+		this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
+		//email
+		this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
+		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		//password
+		this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
+		this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #486ED9; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
+		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		//login
+		this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
+		//error
+		this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+		//languages
+		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; color: #0A0905; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
+		this->listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
+		//theme
+		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
 	}
 	else
 	{
-		// ?
+		this->entryStyle = this->entryStyle_base.arg(this->bright_dark, this->white);
+		//window
+		setStyleSheet("QMainWindow{ background-color: #262625; color: #FCFCFA; }");
+		//title
+		this->titleLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
+		//entriesBox
+		this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
+		//email
+		this->emailLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
+		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		//password
+		this->passwordLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
+		this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #486ED9; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
+		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		//login
+		this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
+		//error
+		this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+		//languages
+		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #262625; color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow_dark.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
+		this->listView->setStyleSheet("QListView{ outline: 0; background-color: #262625; color: #FCFCFA; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
+		//theme
+		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
 	}
 }
 
@@ -267,4 +300,5 @@ void PassWindow::change_theme()
 		this->theme = "dark";
 		this->themeBtn->setIcon(QIcon("bright.svg"));
 	}
+	this->apply_style();
 }

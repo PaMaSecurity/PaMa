@@ -41,6 +41,7 @@ private: //objects
 	QHBoxLayout* settingsLayout;
 	QFrame* settingsFrame;
 	PComboBox* languageCB;
+	QListView* listView;
 	QPushButton* themeBtn;
 
 private: //variables
@@ -49,7 +50,11 @@ private: //variables
 	QString theme = "bright";
 	short remaining_tests = 3;
 	bool is_error_raised = false;
-	QString entryStyle = "selection-background-color: #486ED9; background: #FCFCFA; padding-left: 15px; padding-right: 15px; border-radius: 5px;";
+	QString black = "#0A0905";
+	QString bright_dark = "#262625";
+	QString white = "#FCFCFA";
+	QString entryStyle_base = "background-color: %0; color: %1; padding-left: 15px; padding-right: 15px; border-radius: 5px;";  //can the user create a new property in qss ? ::error who can be manage with a bool
+	QString entryStyle;
 
 private: //methods
 	void clear_focus();
