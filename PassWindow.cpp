@@ -26,7 +26,7 @@ PassWindow::PassWindow(QWidget* parent)
 
 
 	//		Window
-	resize(700, 650);
+	resize(700, 625);
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("window_icon.ico"));
 	setWindowTitle("PaMa");
@@ -180,6 +180,18 @@ void PassWindow::raise_error(const QString message)
 	this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
 	this->clear_focus();
 	this->is_error_raised = true;
+}
+
+void PassWindow::apply_style()
+{
+	if (this->theme == "bright")
+	{
+		// ?
+	}
+	else
+	{
+		// ?
+	}
 }
 
 //private slots

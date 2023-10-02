@@ -54,6 +54,7 @@ private: //variables
 private: //methods
 	void clear_focus();
 	void raise_error(const QString message);
+	void apply_style();
 
 private slots: //slots
 	void mousePressEvent(QMouseEvent* e);
