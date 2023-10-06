@@ -48,4 +48,15 @@ private:
 	QFont font;
 };
 
+enum Language
+{
+	english,
+	french
+};
+
+enum Theme
+{
+	bright = 0x00,
+	dark = 0x01
+};
 #endif

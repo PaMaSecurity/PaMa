@@ -46,8 +46,8 @@ private: //objects
 
 private: //variables
 	QList<QString> LanguagesList = { "English", "Français" };  // map or hashmap | qmap ...
-	QString lang = "Français";
-	QString theme = "bright";
+	QString language = LanguagesList[0];
+	Theme theme = Theme::bright;
 	short remaining_tests = 3;
 	bool is_error_raised = false;
 	QString black = "#0A0905";

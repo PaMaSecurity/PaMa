@@ -29,7 +29,7 @@ PassWindow::PassWindow(QWidget* parent)
 	//		Window
 	resize(700, 625);
 	setMinimumSize(QSize(450, 500));
-	setWindowIcon(QIcon("window_icon.ico"));
+	setWindowIcon(QIcon("icon-colour.svg"));
 	setWindowTitle("PaMa");
 	
 
@@ -72,7 +72,7 @@ PassWindow::PassWindow(QWidget* parent)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
 	}
-	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->lang));
+	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->language));
 	this->settingsLayout->addWidget(this->languageCB, 1, Qt::AlignmentFlag::AlignLeft);
 	//theme
 	this->themeBtn->setIcon(QIcon("dark.svg"));
@@ -162,18 +162,31 @@ void PassWindow::clear_focus()
 
 void PassWindow::raise_error(const QString message)
 {
-	this->errorLabel->setText(message);
-	this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
-	this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
-	this->passwordLabel->setStyleSheet("QLabel{ color: #EB0000; }");
-	this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
-	this->clear_focus();
-	this->is_error_raised = true;
+	if (this->theme == Theme::bright)
+	{
+		this->errorLabel->setText(message);
+		this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
+		this->passwordLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
+		this->clear_focus();
+		this->is_error_raised = true;
+	}
+	else
+	{
+		this->errorLabel->setText(message);
+		this->emailLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
+		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #FF4B45; }");
+		this->passwordLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
+		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #FF4B45; }");
+		this->clear_focus();
+		this->is_error_raised = true;
+	}
 }
 
 void PassWindow::apply_style()
 {
-	if (this->theme == "bright")
+	if (this->theme == Theme::bright)
 	{
 		this->entryStyle = this->entryStyle_base.arg(this->white, this->black);
 		//window
@@ -182,13 +195,8 @@ void PassWindow::apply_style()
 		this->titleLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 		//entriesBox
 		this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
-		//email
-		this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
-		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 		//password
-		this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
 		this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #486ED9; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
-		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 		//login
 		this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
 		//error
@@ -198,6 +206,25 @@ void PassWindow::apply_style()
 		this->listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 		//theme
 		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
+
+		if (this->is_error_raised)
+		{
+			//email
+			this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
+			//password
+			this->passwordLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #EB0000; }");
+		}
+		else
+		{
+			//email
+			this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+			//password
+			this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		}
 	}
 	else
 	{
@@ -208,22 +235,36 @@ void PassWindow::apply_style()
 		this->titleLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
 		//entriesBox
 		this->entriesBox->setStyleSheet("QGroupBox {border: 1px solid #7E7D79; border-radius: 10px;}");
-		//email
-		this->emailLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
-		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
 		//password
-		this->passwordLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
-		this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #486ED9; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
-		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		this->forgotButton->setStyleSheet("QPushButton{ outline: 0; text-align:left; padding: 5px; border: 0px; color: #6D8BE1; border-radius: 5px; } QPushButton:hover{ text-decoration: underline; } QPushButton:pressed{ color: #4862A8; }");
 		//login
 		this->loginButton->setStyleSheet("QPushButton{ outline: 0; border-radius: 5px; border: 0px; background: #486ED9; color: white;} QPushButton::focus{background: #4862A8;} QPushButton:hover{background: #4862A8;}");
 		//error
-		this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
+		this->errorLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
 		//languages
 		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #262625; color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow_dark.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
 		this->listView->setStyleSheet("QListView{ outline: 0; background-color: #262625; color: #FCFCFA; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 		//theme
 		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
+
+		if (this->is_error_raised)
+		{
+			//email
+			this->emailLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #FF4B45; }");
+			//password
+			this->passwordLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #FF4B45; }");
+		}
+		else
+		{
+			//email
+			this->emailLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+			//password
+			this->passwordLabel->setStyleSheet("QLabel{ color: #FCFCFA; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		}
 	}
 }
 
@@ -239,10 +280,20 @@ void PassWindow::clear_error()
 {
 	if (this->is_error_raised)
 	{
-		this->emailLabel->setStyleSheet("QLabel{ color: #0A0905; }");
-		this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
-		this->passwordLabel->setStyleSheet("QLabel{ color: #0A0905; }");
-		this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		if (this->theme == Theme::bright)
+		{
+			this->emailLabel->setStyleSheet("QLabel{ color: " + this->black + "; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+			this->passwordLabel->setStyleSheet("QLabel{ color: " + this->black + "; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		}
+		else
+		{
+			this->emailLabel->setStyleSheet("QLabel{ color: " + this->white + "; }");
+			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+			this->passwordLabel->setStyleSheet("QLabel{ color: " + this->white + "; }");
+			this->passwordEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
+		}
 		this->is_error_raised = false;
 	}
 }
@@ -282,7 +333,7 @@ void PassWindow::check_password()
 void PassWindow::language_changed(const QModelIndex& i) // too early to use the current text
 {
 	this->languageCB->clearFocus();
-	if (this->languageCB->itemText(i.row()) != this->lang)
+	if (this->languageCB->itemText(i.row()) != this->language)
 	{
 		qDebug() << this->languageCB->itemText(i.row());
 	}
@@ -290,15 +341,15 @@ void PassWindow::language_changed(const QModelIndex& i) // too early to use the 
 
 void PassWindow::change_theme()
 {
-	if (this->theme == "dark")
+	if (this->theme == Theme::bright)
 	{
-		this->theme = "bright";
-		this->themeBtn->setIcon(QIcon("dark.svg"));
+		this->theme = Theme::dark;
+		this->themeBtn->setIcon(QIcon("bright.svg"));
 	}
 	else
 	{
-		this->theme = "dark";
-		this->themeBtn->setIcon(QIcon("bright.svg"));
+		this->theme = Theme::bright;
+		this->themeBtn->setIcon(QIcon("dark.svg"));
 	}
 	this->apply_style();
 }
