@@ -162,7 +162,7 @@ void PassWindow::clear_focus()
 
 void PassWindow::raise_error(const QString message)
 {
-	if (this->theme == Theme::bright)
+	if (this->theme == Theme::Bright)
 	{
 		this->errorLabel->setText(message);
 		this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
@@ -186,7 +186,7 @@ void PassWindow::raise_error(const QString message)
 
 void PassWindow::apply_style()
 {
-	if (this->theme == Theme::bright)
+	if (this->theme == Theme::Bright)
 	{
 		this->entryStyle = this->entryStyle_base.arg(this->white, this->black);
 		//window
@@ -280,7 +280,7 @@ void PassWindow::clear_error()
 {
 	if (this->is_error_raised)
 	{
-		if (this->theme == Theme::bright)
+		if (this->theme == Theme::Bright)
 		{
 			this->emailLabel->setStyleSheet("QLabel{ color: " + this->black + "; }");
 			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
@@ -341,14 +341,14 @@ void PassWindow::language_changed(const QModelIndex& i) // too early to use the 
 
 void PassWindow::change_theme()
 {
-	if (this->theme == Theme::bright)
+	if (this->theme == Theme::Bright)
 	{
-		this->theme = Theme::dark;
+		this->theme = Theme::Dark;
 		this->themeBtn->setIcon(QIcon("bright.svg"));
 	}
 	else
 	{
-		this->theme = Theme::bright;
+		this->theme = Theme::Bright;
 		this->themeBtn->setIcon(QIcon("dark.svg"));
 	}
 	this->apply_style();

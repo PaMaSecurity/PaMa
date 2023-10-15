@@ -26,11 +26,6 @@ PComboBox::PComboBox(QWidget* parent) : QComboBox(parent), arrowAlignment_(Qt::A
 	actual_itemView = view();
 }
 
-void PComboBox::menu_pressed(const QModelIndex &i)
-{
-	emit menuClicked(i);
-}
-
 void PComboBox::setView(QAbstractItemView* itemView)
 {
 	QObject::disconnect(actual_itemView);
@@ -70,6 +65,11 @@ void PComboBox::setArrowAlignment(Qt::Alignment a)
 void PComboBox::setTextAlignment(Qt::Alignment a)
 {
 	textAlignment_ = a;
+}
+
+QVars::QVars()
+{
+
 }
 
 //Settings::Settings(QWidget* parent) : QDialog(parent)

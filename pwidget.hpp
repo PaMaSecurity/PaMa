@@ -45,12 +45,49 @@ signals:
 	void menuClicked(const QModelIndex& i);
 
 private:
+	inline void menu_pressed(const QModelIndex& i) { emit menuClicked(i); };
 	bool connected;
 	bool flat_;
 	Qt::Alignment arrowAlignment_;
 	Qt::Alignment textAlignment_;
 	QAbstractItemView* actual_itemView;
-	void menu_pressed(const QModelIndex& i);
+};
+
+class QVars : public QObject
+{
+	Q_OBJECT
+public:
+	enum Language
+	{
+		FollowDeviceLanguage = 0,
+		English = 1,
+		French = 2
+	};
+
+	enum Theme
+	{
+		FollowDeviceTheme = 0,
+		Bright = 1,
+		Dark = 2,
+		Custom = 3
+	};
+
+public:
+	QVars();
+	
+	inline void setLanguage(Language value) { this->language = value; };
+	inline void setTheme(Theme value) { this->theme = value; };
+
+	inline Language getLanguage() { return this->language; };
+	inline Theme getTheme() { return this->theme; };
+
+
+signals:
+	void themeChanged();
+
+protected:
+	Language language;
+	Theme theme;
 };
 
 //#include <QDialog.h>
