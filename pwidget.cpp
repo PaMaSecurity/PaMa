@@ -67,9 +67,14 @@ void PComboBox::setTextAlignment(Qt::Alignment a)
 	textAlignment_ = a;
 }
 
+QVars::QVars(Language l, Theme t) : language(l), theme(t)
+{
+	this->fillVars();
+}
+
 QVars::QVars()
 {
-
+	this->fillVars();
 }
 
 //Settings::Settings(QWidget* parent) : QDialog(parent)

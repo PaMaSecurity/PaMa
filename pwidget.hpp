@@ -59,35 +59,42 @@ class QVars : public QObject
 public:
 	enum Language
 	{
-		FollowDeviceLanguage = 0,
+		DeviceLanguage = 0,
 		English = 1,
 		French = 2
 	};
 
 	enum Theme
 	{
-		FollowDeviceTheme = 0,
+		DeviceTheme = 0,
 		Bright = 1,
 		Dark = 2,
 		Custom = 3
 	};
 
 public:
+	QVars(Language l, Theme t);
 	QVars();
 	
 	inline void setLanguage(Language value) { this->language = value; };
 	inline void setTheme(Theme value) { this->theme = value; };
 
-	inline Language getLanguage() { return this->language; };
-	inline Theme getTheme() { return this->theme; };
-
+	inline Language getLanguage() { return this->language == Language::DeviceLanguage ? this->deviceLanguage : this->language; };
+	Language getDeviceLanguage();
+	inline Theme getTheme() { return this->theme == Theme::DeviceTheme ? this->deviceTheme : this->theme; };
+	Theme getDeviceTheme();
 
 signals:
 	void themeChanged();
 
 protected:
 	Language language;
+	Language deviceLanguage;
 	Theme theme;
+	Theme deviceTheme;
+
+private:
+	void fillVars();
 };
 
 //#include <QDialog.h>
