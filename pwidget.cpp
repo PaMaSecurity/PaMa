@@ -76,13 +76,3 @@ QVars::QVars()
 {
 	this->fillVars();
 }
-
-//Settings::Settings(QWidget* parent) : QDialog(parent)
-//{
-//	setWindowTitle("CoverWindow");
-//	setWindowFlag(Qt::WindowMinimizeButtonHint, true);
-//}
-//
-//Settings::~Settings()
-//{
-//}
