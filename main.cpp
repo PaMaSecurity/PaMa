@@ -8,12 +8,12 @@ int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 
-	PassWindow pw;
-	pw.show();
-
 	PVars vars;
 
-	MainWindow mw{vars};
+	PassWindow pw{ &vars };
+	pw.show();
+
+	MainWindow mw;
 
 	QObject::connect(&pw, &PassWindow::password_validated, &mw, &MainWindow::display);
 

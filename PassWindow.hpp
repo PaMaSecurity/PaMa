@@ -18,14 +18,13 @@ class PassWindow : public QMainWindow
 {
 	Q_OBJECT
 public: //ctor dtor
-	PassWindow(PVars vars, QWidget* parent = nullptr);
-	PassWindow(QWidget* parent = nullptr);
-	~PassWindow();
+	PassWindow(PVars* vars, QWidget* parent = nullptr);
 
 signals:
 	void password_validated(const QString password);
 
 protected: //objects
+	PVars* vars;
 	QVBoxLayout* vlayout;
 	QVBoxLayout* entriesLayout;
 	QWidget* mainWidget;

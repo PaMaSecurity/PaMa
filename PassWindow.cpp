@@ -2,10 +2,11 @@
 
 //ctor & dtor
 
-PassWindow::PassWindow(QWidget* parent)
+PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	: QMainWindow(parent)
 {
 	//		Instantiate objects
+	this->vars = variables;
 	this->vlayout = new QVBoxLayout(this);
 	this->entriesLayout = new QVBoxLayout(this);
 	this->mainWidget = new QWidget(this);
@@ -144,10 +145,6 @@ PassWindow::PassWindow(QWidget* parent)
 	QObject::connect(this->loginButton, &QPushButton::pressed, this, &PassWindow::check_password);
 	QObject::connect(this->languageCB, &PComboBox::menuClicked, this, &PassWindow::language_changed);
 	QObject::connect(this->themeBtn, &QPushButton::pressed, this, &PassWindow::change_theme);
-}
-
-PassWindow::~PassWindow()
-{
 }
 
 //private methods
