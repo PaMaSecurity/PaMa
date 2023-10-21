@@ -53,7 +53,7 @@ private:
 	QAbstractItemView* actual_itemView;
 };
 
-class QVars : public QObject
+class PVars : public QObject
 {
 	Q_OBJECT
 public:
@@ -73,8 +73,9 @@ public:
 	};
 
 public:
-	QVars(Language l, Theme t);
-	QVars();
+	PVars(QObject* parent, Language l, Theme t);
+	PVars(QObject* parent = nullptr);
+	~PVars();
 	
 	inline void setLanguage(Language value) { this->language = value; };
 	inline void setTheme(Theme value) { this->theme = value; };
@@ -87,13 +88,13 @@ public:
 signals:
 	void themeChanged();
 
+private:
+	void fillVars();
+
 protected:
 	Language language;
 	Language deviceLanguage;
 	Theme theme;
 	Theme deviceTheme;
-
-private:
-	void fillVars();
 };
 #endif

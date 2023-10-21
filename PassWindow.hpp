@@ -18,13 +18,14 @@ class PassWindow : public QMainWindow
 {
 	Q_OBJECT
 public: //ctor dtor
+	PassWindow(PVars vars, QWidget* parent = nullptr);
 	PassWindow(QWidget* parent = nullptr);
 	~PassWindow();
 
 signals:
 	void password_validated(const QString password);
 
-private: //objects
+protected: //objects
 	QVBoxLayout* vlayout;
 	QVBoxLayout* entriesLayout;
 	QWidget* mainWidget;
@@ -56,12 +57,12 @@ private: //variables
 	QString entryStyle_base = "background-color: %0; color: %1; padding-left: 15px; padding-right: 15px; border-radius: 5px;";  //can the user create a new property in qss ? ::error who can be manage with a bool
 	QString entryStyle;
 
-private: //methods
+protected: //methods
 	void clear_focus();
 	void raise_error(const QString message);
 	void apply_style();
 
-private slots: //slots
+protected slots: //slots
 	void mousePressEvent(QMouseEvent* e);
 	void clear_error();
 	void password_forgot();

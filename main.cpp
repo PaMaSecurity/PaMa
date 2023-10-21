@@ -1,5 +1,6 @@
 #include <QApplication.h>
 #include <QDebug.h>
+#include "pwidget.hpp"
 #include "PassWindow.hpp"
 #include "MainWindow.hpp"
 
@@ -10,7 +11,9 @@ int main(int argc, char* argv[])
 	PassWindow pw;
 	pw.show();
 
-	MainWindow mw;
+	PVars vars;
+
+	MainWindow mw{vars};
 
 	QObject::connect(&pw, &PassWindow::password_validated, &mw, &MainWindow::display);
 
