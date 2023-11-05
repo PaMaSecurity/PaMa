@@ -11,6 +11,7 @@
 #include "crypto.hpp"
 #include "utils.hpp"
 #include "pwidget.hpp"
+#include "pvars.hpp"
 
 #include <QDebug.h>
 
@@ -19,6 +20,7 @@ class PassWindow : public QMainWindow
 	Q_OBJECT
 public: //ctor dtor
 	PassWindow(PVars* vars, QWidget* parent = nullptr);
+	~PassWindow();
 
 signals:
 	void password_validated(const QString password);
@@ -45,9 +47,6 @@ protected: //objects
 	QPushButton* themeBtn;
 
 private: //variables
-	QList<QString> LanguagesList = { "English", "Français" };  // map or hashmap | qmap ...
-	QString language = LanguagesList[0];
-	Theme theme = Theme::Bright;
 	short remaining_tests = 3;
 	bool is_error_raised = false;
 	QString black = "#0A0905";

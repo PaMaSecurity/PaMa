@@ -147,6 +147,11 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	QObject::connect(this->themeBtn, &QPushButton::pressed, this, &PassWindow::change_theme);
 }
 
+PassWindow::~PassWindow()
+{
+
+}
+
 //private methods
 
 void PassWindow::clear_focus()

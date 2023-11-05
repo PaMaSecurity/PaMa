@@ -2,28 +2,13 @@
 #define PVARS_HPP
 
 #include <QObject.h>
+#include <QDebug.h>
 
 class PVars : public QObject
 {
 	Q_OBJECT
-public:
-	enum Language
-	{
-		DeviceLanguage = 0,
-		English = 1,
-		French = 2
-	};
-
-	enum Theme
-	{
-		DeviceTheme = 0,
-		Bright = 1,
-		Dark = 2,
-		Custom = 3
-	};
 
 public:
-	PVars(QObject* parent, Language l, Theme t);
 	PVars(QObject* parent = nullptr);
 	~PVars();
 
@@ -38,13 +23,15 @@ public:
 signals:
 	void themeChanged();
 
-private:
-	void fillVars();
-
 protected:
-	Language language;
-	Language deviceLanguage;
-	Theme theme;
-	Theme deviceTheme;
+	QString language;
+	QString deviceLanguage;
+	QString theme;
+	QString deviceTheme;
+
+private:
+	void readfile();
+	QMap<int, QString> Language;
+	QMap<int, QString> Theme;
 };
 #endif

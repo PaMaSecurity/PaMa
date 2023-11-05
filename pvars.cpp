@@ -1,13 +1,8 @@
 #include "pvars.hpp"
 
-PVars::PVars(QObject* parent, Language l, Theme t) : QObject(parent), language(l), theme(t)
-{
-	this->fillVars();
-}
-
 PVars::PVars(QObject* parent = nullptr) : QObject(parent)
 {
-	this->fillVars();
+	this->readfile();
 }
 
 PVars::~PVars()
@@ -25,10 +20,6 @@ PVars::Theme PVars::getDeviceTheme()
 	return this->deviceTheme;
 }
 
-void PVars::fillVars()
+void PVars::readfile()
 {
-	this->language = PVars::Language::English;
-	this->deviceLanguage = PVars::Language::English;
-	this->theme = PVars::Theme::Bright;
-	this->deviceTheme = PVars::Theme::Bright;
 }

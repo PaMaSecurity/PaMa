@@ -1,6 +1,6 @@
 #include <QApplication.h>
 #include <QDebug.h>
-#include "pwidget.hpp"
+#include "pvars.hpp"
 #include "PassWindow.hpp"
 #include "MainWindow.hpp"
 
@@ -35,6 +35,7 @@ QStyleSheetManipulator: https://stackoverflow.com/questions/52879480/how-to-upda
 Loading Screen: https://doc.qt.io/qt-5/qsplashscreen.html
 Create a QSS property: https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-using-dynamic-properties
 Variables in QSS: https://stackoverflow.com/questions/10898399/using-variables-in-qt-stylesheets
+Differences between List and Vector: https://www.geeksforgeeks.org/difference-between-vector-and-list/
 */
 
 /*
