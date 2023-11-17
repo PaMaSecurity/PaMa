@@ -32,6 +32,7 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	setMinimumSize(QSize(450, 500));
 	setWindowIcon(QIcon("icon-colour.svg"));
 	setWindowTitle("PaMa");
+	setAnimated(false);
 	
 
 	//		Body
@@ -68,12 +69,12 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 
 	//	Settings
 	//language
-	this->languageCB->setView(listView);
+	/*this->languageCB->setView(listView);
 	for (int i = 0; i < LanguagesList.size(); ++i)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
 	}
-	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->language));
+	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->language));*/
 	this->settingsLayout->addWidget(this->languageCB, 1, Qt::AlignmentFlag::AlignLeft);
 	//theme
 	this->themeBtn->setIcon(QIcon("dark.svg"));
@@ -164,7 +165,7 @@ void PassWindow::clear_focus()
 
 void PassWindow::raise_error(const QString message)
 {
-	if (this->theme == Theme::Bright)
+	if (true)//(this->theme == Theme::Bright)
 	{
 		this->errorLabel->setText(message);
 		this->emailLabel->setStyleSheet("QLabel{ color: #EB0000; }");
@@ -188,7 +189,7 @@ void PassWindow::raise_error(const QString message)
 
 void PassWindow::apply_style()
 {
-	if (this->theme == Theme::Bright)
+	if (true)//(this->theme == Theme::Bright)
 	{
 		this->entryStyle = this->entryStyle_base.arg(this->white, this->black);
 		//window
@@ -282,7 +283,7 @@ void PassWindow::clear_error()
 {
 	if (this->is_error_raised)
 	{
-		if (this->theme == Theme::Bright)
+		if (true)//(this->theme == Theme::Bright)
 		{
 			this->emailLabel->setStyleSheet("QLabel{ color: " + this->black + "; }");
 			this->emailEntry->setStyleSheet("QLineEdit{ " + this->entryStyle + "border: 1px solid #7E7D79; }");
@@ -335,15 +336,15 @@ void PassWindow::check_password()
 void PassWindow::language_changed(const QModelIndex& i) // too early to use the current text
 {
 	this->languageCB->clearFocus();
-	if (this->languageCB->itemText(i.row()) != this->language)
+	/*if (this->languageCB->itemText(i.row()) != this->language)
 	{
 		qDebug() << this->languageCB->itemText(i.row());
-	}
+	}*/
 }
 
 void PassWindow::change_theme()
 {
-	if (this->theme == Theme::Bright)
+	/*if (this->theme == Theme::Bright)
 	{
 		this->theme = Theme::Dark;
 		this->themeBtn->setIcon(QIcon("bright.svg"));
@@ -353,5 +354,5 @@ void PassWindow::change_theme()
 		this->theme = Theme::Bright;
 		this->themeBtn->setIcon(QIcon("dark.svg"));
 	}
-	this->apply_style();
+	this->apply_style();*/
 }

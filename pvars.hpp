@@ -12,13 +12,13 @@ public:
 	PVars(QObject* parent = nullptr);
 	~PVars();
 
-	inline void setLanguage(Language value) { this->language = value; };
+	/*inline void setLanguage(Language value) { this->language = value; };
 	inline void setTheme(Theme value) { this->theme = value; };
 
 	inline Language getLanguage() { return this->language == Language::DeviceLanguage ? this->deviceLanguage : this->language; };
 	Language getDeviceLanguage();
 	inline Theme getTheme() { return this->theme == Theme::DeviceTheme ? this->deviceTheme : this->theme; };
-	Theme getDeviceTheme();
+	Theme getDeviceTheme();*/
 
 signals:
 	void themeChanged();

@@ -43,7 +43,9 @@ MainWindow::MainWindow(QWidget* parent)
 
 	//		Window
 	resize(this->desk->screenGeometry().size()*.75);
-	setWindowIcon(QIcon("window_icon.ico"));
+	setMinimumSize(QSize(450, 500));
+	setWindowIcon(QIcon("icon-colour.svg"));
+	setWindowTitle("PaMa");
 	setAnimated(false);
 
 
