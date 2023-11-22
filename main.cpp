@@ -27,16 +27,17 @@ int main(int argc, char** argv)
 */
 
 /*
-Windows Theme: https://stackoverflow.com/questions/75457687/detect-dark-application-style-theme-of-currently-used-desktop-in-qt
-Open a link: https://doc.qt.io/qt-5/qdesktopservices.html
-QSS (CSS for qt): https://youtu.be/zjWfDEUsobQ
-IP: https://www.showmyip.com/ip-lookup/?ip=90.105.30.215
-Outline dotted: https://stackoverflow.com/questions/9795791/removing-dotted-border-without-setting-nofocus-in-windows-pyqt
-QStyleSheetManipulator: https://stackoverflow.com/questions/52879480/how-to-update-a-single-property-of-the-stylesheet
-Loading Screen: https://doc.qt.io/qt-5/qsplashscreen.html
-Create a QSS property: https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-using-dynamic-properties
-Variables in QSS: https://stackoverflow.com/questions/10898399/using-variables-in-qt-stylesheets
-Differences between List and Vector: https://www.geeksforgeeks.org/difference-between-vector-and-list/
+Files and Resources:					https://doc.qt.io/qt-5/resources.html
+Windows Theme:							https://stackoverflow.com/questions/75457687/detect-dark-application-style-theme-of-currently-used-desktop-in-qt
+Open a link:							https://doc.qt.io/qt-5/qdesktopservices.html
+QSS (CSS for qt):						https://youtu.be/zjWfDEUsobQ
+IP:										https://www.showmyip.com/ip-lookup/?ip=90.105.30.215
+Outline dotted:							https://stackoverflow.com/questions/9795791/removing-dotted-border-without-setting-nofocus-in-windows-pyqt
+QStyleSheetManipulator:					https://stackoverflow.com/questions/52879480/how-to-update-a-single-property-of-the-stylesheet
+Loading Screen:							https://doc.qt.io/qt-5/qsplashscreen.html
+Create a QSS property:					https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-using-dynamic-properties
+Variables in QSS:						https://stackoverflow.com/questions/10898399/using-variables-in-qt-stylesheets
+Differences between List and Vector:	https://www.geeksforgeeks.org/difference-between-vector-and-list/
 */
 
 /*
