@@ -4,7 +4,7 @@
 #include "PassWindow.hpp"
 #include "MainWindow.hpp"
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
 	QApplication app(argc, argv);
 
@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 /* Ideas:
 - Have a menu where all actions done that can be undone are listed
 - App on phone that can unlock the software (need to be oversecured)
+- Use a stack for undo and an other for redo
 */
 
 /*

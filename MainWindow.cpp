@@ -55,12 +55,12 @@ MainWindow::MainWindow(QWidget* parent)
 	
 	this->fileMenu->addAction(this->new_accountAct);
 	this->new_accountAct->setText(tr("New Account"));
-	this->new_accountAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));  // Qt::CTRL | Qt::Key_Plus
+	this->new_accountAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
 	QObject::connect(this->new_accountAct, &QAction::triggered, this, &MainWindow::new_account);
 
 	this->fileMenu->addAction(this->new_folderAct);
 	this->new_folderAct->setText(tr("New Folder"));
-	this->new_folderAct->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));  // Qt::CTRL | Qt::SHIFT | Qt::Key_Plus
+	this->new_folderAct->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));
 	QObject::connect(this->new_folderAct, &QAction::triggered, this, &MainWindow::new_folder);
 	
 	this->fileMenu->addAction(this->settingsAct); 

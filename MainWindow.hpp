@@ -6,6 +6,8 @@
 #include <QDesktopWidget.h>
 #include <QMenuBar.h>
 #include <QDebug.h>
+
+#include <stack>
 	
 class MainWindow : public QMainWindow
 {
@@ -53,6 +55,11 @@ private: //objects
 	QAction* open_srcAct;			// |---About Open-soucre
 
 private:  //vars
+	/*
+	https://stackoverflow.com/questions/8915797/calling-a-function-through-its-address-in-memory-in-c-c
+	*/
+	std::stack<int> redoSK;
+	std::stack<int> undoSK;
 
 private slots:
 	// File

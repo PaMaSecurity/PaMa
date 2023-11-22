@@ -69,8 +69,9 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 
 	//	Settings
 	//language
-	/*this->languageCB->setView(listView);
-	for (int i = 0; i < LanguagesList.size(); ++i)
+	this->languageCB->setView(listView);
+	this->languageCB->addItem("English");
+	/*for (int i = 0; i < LanguagesList.size(); ++i)
 	{
 		this->languageCB->addItem(LanguagesList[i]);
 	}
