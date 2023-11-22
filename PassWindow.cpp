@@ -30,7 +30,7 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	//		Window
 	resize(700, 625);
 	setMinimumSize(QSize(450, 500));
-	setWindowIcon(QIcon("icon-colour.svg"));
+	setWindowIcon(QIcon("images/icon-colour.svg"));
 	setWindowTitle("PaMa");
 	setAnimated(false);
 	
@@ -206,7 +206,7 @@ void PassWindow::apply_style()
 		//error
 		this->errorLabel->setStyleSheet("QLabel{ color: #EB0000; }");
 		//languages
-		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; color: #0A0905; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
+		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #FCFCFA; color: #0A0905; text-align: right; } QComboBox::down-arrow{ image: url(images/down_arrow.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
 		this->listView->setStyleSheet("QListView{ outline: 0; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 		//theme
 		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
@@ -246,7 +246,7 @@ void PassWindow::apply_style()
 		//error
 		this->errorLabel->setStyleSheet("QLabel{ color: #FF4B45; }");
 		//languages
-		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #262625; color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(down_arrow_dark.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
+		this->languageCB->setStyleSheet(R"(QComboBox{ border: 0px; background-color: #262625; color: #FCFCFA; text-align: right; } QComboBox::down-arrow{ image: url(images/down_arrow_dark.svg); } QComboBox::down-arrow:on{ top: 5px; left: 5px; } QComboBox::focus{ background-color: #F2F2F0; } QComboBox:hover{ background-color: #F2F2F0; })");
 		this->listView->setStyleSheet("QListView{ outline: 0; background-color: #262625; color: #FCFCFA; } QListView::item:hover{ background-color: #486ED9; } QListView::item:selected{ background-color: #486ED9; }");
 		//theme
 		this->themeBtn->setStyleSheet("QPushButton{ padding: 0; margin: 0; border: 0; }");
