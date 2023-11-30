@@ -194,6 +194,7 @@ MainWindow::~MainWindow()
 void MainWindow::display(QString p)
 {
 	this->showMaximized();
+	this->showNormal();
 }
 
 //		private slots

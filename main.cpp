@@ -23,10 +23,10 @@ int main(int argc, char** argv)
 /* Ideas:
 - Have a menu where all actions done that can be undone are listed
 - App on phone that can unlock the software (need to be oversecured)
-- Use a stack for undo and an other for redo
 */
 
 /*
+std::stack undo, redo;
 Files and Resources:					https://doc.qt.io/qt-5/resources.html
 Windows Theme:							https://stackoverflow.com/questions/75457687/detect-dark-application-style-theme-of-currently-used-desktop-in-qt
 Open a link:							https://doc.qt.io/qt-5/qdesktopservices.html

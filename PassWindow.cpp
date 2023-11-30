@@ -30,7 +30,7 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	//		Window
 	resize(700, 625);
 	setMinimumSize(QSize(450, 500));
-	setWindowIcon(QIcon(R"(/images/icon-colour.svg)"));
+	setWindowIcon(QIcon("icon"));
 	setWindowTitle("PaMa");
 	setAnimated(false);
 	
@@ -78,7 +78,7 @@ PassWindow::PassWindow(PVars* variables, QWidget* parent)
 	this->languageCB->setCurrentIndex(LanguagesList.indexOf(this->language));*/
 	this->settingsLayout->addWidget(this->languageCB, 1, Qt::AlignmentFlag::AlignLeft);
 	//theme
-	this->themeBtn->setIcon(QIcon("dark.svg"));
+	this->themeBtn->setIcon(QIcon("images/dark.svg"));
 	this->settingsLayout->addWidget(this->themeBtn, 3, Qt::AlignmentFlag::AlignRight);
 	//layout
 	this->settingsFrame->setLayout(this->settingsLayout);

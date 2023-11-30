@@ -7,7 +7,7 @@ PVars::PVars(QObject* parent) : QObject(parent)
 
 PVars::~PVars()
 {
-	qDebug() << "not here anymore !";
+
 }
 
 //PVars::Language PVars::getDeviceLanguage()
